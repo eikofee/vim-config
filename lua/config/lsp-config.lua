@@ -32,6 +32,18 @@ require("lspconfig").clangd.setup{
 	cmd = {"clangd-17"}
 }
 
+require("lspconfig").pylsp.setup{}
+
+require("lspconfig").rust_analyzer.setup {
+    settings = {
+	['rust-analyzer'] = {
+	    diagnostics = {
+		enable = false;
+	    }
+	}
+    }
+}
+
 local cmp = require('cmp')
 local luasnip = require("luasnip")
 
@@ -46,14 +58,6 @@ sources = {
 	},
   mapping = cmp.mapping.preset.insert({
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.locally_jumpable(1) then
-        luasnip.jump(1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping(function(fallback)
         if cmp.visible() then
             if luasnip.expandable() then
                 luasnip.expand()
@@ -62,10 +66,26 @@ sources = {
                     select = true,
                 })
             end
-        else
-            fallback()
-        end
-    end),
+	else 
+	    if luasnip.locally_jumpable(1) then
+		luasnip.jump(1)
+	    else
+		fallback()
+	    end
+	end
+    end,{ "i", "s" }),
+    ['<C-Space>'] = cmp.mapping.complete(),
   }),
 })
 
+require("telescope").setup {
+    extension = {
+	["ui-select"] = {
+	    require("telescope.themes").get_dropdown {
+
+	    }
+	}
+    }
+}
+
+require("telescope").load_extension("ui-select")
