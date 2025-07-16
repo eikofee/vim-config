@@ -26,10 +26,14 @@ keymap.set("n", "<leader>a", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 keymap.set("n", "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>")
 keymap.set("n", "<leader>i", "<cmd>lua vim.lsp.buf.hover()<CR>")
 
+-- DB explorer
+keymap.set("n", "<leader>d", "<cmd>DBUIToggle<cr>")
+
 -- Nvimtree
 keymap.set("n", "<leader>b", "<cmd>NvimTreeToggle<CR>")
 
-
-
--- Nvimtree
-keymap.set("n", "<leader>b", "<cmd>NvimTreeToggle<cr>")
+-- Resize buffer
+keymap.set("n", "<leader>h", "<cmd>vertical resize -20<cr>")
+keymap.set("n", "<leader>j", "<cmd>resize -20<cr>")
+keymap.set("n", "<leader>k", "<cmd>resize +20<cr>")
+keymap.set("n", "<leader>l", "<cmd>vertical resize +20<cr>")

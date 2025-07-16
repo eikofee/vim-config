@@ -50,6 +50,7 @@ local luasnip = require("luasnip")
 cmp.setup({
 sources = {
     {name = 'nvim_lsp'},
+    {name = 'vim-dadbod-completion'},
   },
   snippet = {
   expand = function(args)
